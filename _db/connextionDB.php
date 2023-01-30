@@ -25,7 +25,7 @@
     }
 
     public function DB(){
-        $this->connexion;
+        return $this->connexion;
     }
 
   }
