@@ -1,12 +1,18 @@
 <?php
-include_once('include.php');
-$title = "Bonjour"
+require_once('include.php');
+
+if(isset($_SESSION['id'])){
+    $var = "Bonjour " . $_SESSION['pseudo'];
+}else{
+    $var = "Bonjour à tous";
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title><?= $title ?></title>
+    <title>Metachat</title>
     <?php
         require_once('_head/meta.php');
         require_once('_head/link.php');
@@ -16,7 +22,7 @@ $title = "Bonjour"
 <body>
     <?php require_once('_menu/menu.php');?>
 
-    <h1><?= $title ?></h1>
+    <h1><?= $var ?></h1>
 </body>
 <?php require_once('_footer/footer.php');?>
 </html>
