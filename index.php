@@ -2,11 +2,10 @@
 require_once('include.php');
 
 if(isset($_SESSION['id'])){
-    $var = "Bonjour " . $_SESSION['pseudo'];
+    $var = "Bonjour " .$_SESSION['pseudo'];
 }else{
     $var = "Bonjour à tous";
 }
-
 ?>
 
 <!DOCTYPE html>

@@ -1,12 +1,11 @@
 <?php
     require_once('include.php');
-    $title = "Register";
+    $title = "Login";
 
     if(isset($_SESSION['id'])){
         header('Location: index.php');
         exit;
     }
-
 
     if(!empty($_POST)){
         extract($_POST);
@@ -27,7 +26,7 @@
                 $err_password = "Ce champ ne peut pas être vide";
             }
 
-            if($valide){
+            if($valid){
                 $req = $DB->prepare("SELECT mdp 
                     FROM users
                     WHERE pseudo = ?");
@@ -37,7 +36,7 @@
                 $req = $req->fetch();
 
                 if(isset($req['mdp'])){
-                    if(password_verify($password, $req['mdp'])) {
+                    if(!password_verify($password, $req['mdp'])) {
                         $valid = false;
                         $err_pseudo = "La combinaion du pseudo / mot de pass est incorrecte";
                     }
@@ -48,7 +47,6 @@
                 }
             }
 
-            //insertion a notre bdd
             if($valid){
                 $req = $DB->prepare("SELECT * 
                     FROM users
@@ -74,9 +72,7 @@
                 }else{
                     $valid = false;
                     $err_pseudo = "La combinaion du pseudo / mot de pass est incorrecte";
-                }
-
-                
+                }                
             }else{
                 echo 'nok';
             }

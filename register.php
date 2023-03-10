@@ -1,4 +1,5 @@
 <?php
+
     require_once('include.php');
     $title = "Register";
 
@@ -22,12 +23,12 @@
             if(empty($pseudo)){
                 $valid = false;
                 $err_pseudo = "Ce champ ne peut pas être vide";
-            }elseif(grapheme_strlen($pseudo) < 5){
+            }elseif(strlen($pseudo) < 5){
                 $valid = false;
                 $err_pseudo = "Le pseudo doit faire plus de 5 caractères";
-            }elseif(grapheme_strlen($pseudo) >= 25){
+            }elseif(strlen($pseudo) >= 25){
                 $valid = false;
-                $err_pseudo = "Le pseudo doit faire moins de 26 caractères(" . grapheme_strlen($pseudo) . "/25)";
+                $err_pseudo = "Le pseudo doit faire moins de 26 caractères(" . strlen($pseudo) . "/25)";
             }else{
                 $req = $DB->prepare("SELECT id 
                     FROM users
@@ -92,7 +93,7 @@
                 exit;
 
             }else{
-                echo 'nok';
+                echo 'pas bon';
             }
         }
     }
