@@ -19,15 +19,17 @@
             if(empty($pseudo)){
                 $valid = false;
                 $err_pseudo = "Ce champ ne peut pas être vide";
+
             }
 
             if(empty($password)){
                 $valid = false;
                 $err_password = "Ce champ ne peut pas être vide";
+
             }
 
             if($valid){
-                $req = $DB->prepare("SELECT mdp 
+                $req = $DB->prepare("SELECT password 
                     FROM users
                     WHERE pseudo = ?");
 
@@ -35,8 +37,8 @@
 
                 $req = $req->fetch();
 
-                if(isset($req['mdp'])){
-                    if(!password_verify($password, $req['mdp'])) {
+                if(isset($req['password'])){
+                    if(!password_verify($password, $req['password'])) {
                         $valid = false;
                         $err_pseudo = "La combinaion du pseudo / mot de pass est incorrecte";
                     }
@@ -67,7 +69,7 @@
                     $_SESSION['role'] = $req_login['role'];
 
                     echo 'ok';
-                    header('Location: index.php');
+                    header('Location: : index.php');
                     exit;
                 }else{
                     $valid = false;
